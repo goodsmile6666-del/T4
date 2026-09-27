@@ -98,10 +98,8 @@ function render() {
   const normalizedKeyword = filters.keyword.toLocaleLowerCase('ko-KR');
 
   const filtered = services.filter((service) => {
-    const searchable = [service.서비스명, service.소관기관, service.안내분야, service.콜센터]
-      .join(' ')
-      .toLocaleLowerCase('ko-KR');
-    return (!normalizedKeyword || searchable.includes(normalizedKeyword))
+    const serviceName = service.서비스명.toLocaleLowerCase('ko-KR');
+    return (!normalizedKeyword || serviceName.includes(normalizedKeyword))
       && (!filters.category || service.안내분야 === filters.category)
       && (!filters.agency || service.소관기관 === filters.agency)
       && (!filters.online || service.온라인안내 === filters.online);
